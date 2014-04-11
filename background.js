@@ -56,7 +56,7 @@ var prefs = {
   set notification (val) {localStorage['notification'] = val},
   get desktopNotification () {
     if (!localStorage['desktopNotification']) {
-      localStorage['desktopNotification'] = "3";
+      localStorage['desktopNotification'] = "5";
     }
     var tmp = parseInt(localStorage['desktopNotification']);
     return (tmp > 3 ? tmp : 3) * 1000;
@@ -1010,6 +1010,3 @@ if (prefs.resetPeriod) {
 chrome.browserAction.setTitle({
   title: config.defaultTooltip
 });
-
-
-

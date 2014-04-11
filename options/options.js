@@ -18,6 +18,7 @@ function load () {
   $("period").value = chrome.extension.getBackgroundPage().prefs.period / 1000;
   $("resetPeriod").value = chrome.extension.getBackgroundPage().prefs.resetPeriod / (1000 * 60);
   $("initialPeriod").value = chrome.extension.getBackgroundPage().prefs.firstTime / 1000;
+  $("desktopNotification").value = chrome.extension.getBackgroundPage().prefs.desktopNotification / 1000;
   $("feeds").value = chrome.extension.getBackgroundPage().prefs.feeds;
   $("notification").checked = chrome.extension.getBackgroundPage().prefs.notification;
   $("showDetails").checked = chrome.extension.getBackgroundPage().prefs.showDetails;
@@ -48,6 +49,8 @@ window.addEventListener("load", function () {
   $("period").addEventListener("change", function (e) {period("period", 10, e)}, false);
   $("initialPeriod").addEventListener("keyup", function (e) {period("initialPeriod", 1, e)}, false);
   $("initialPeriod").addEventListener("change", function (e) {period("initialPeriod", 1, e)}, false);
+  $("desktopNotification").addEventListener("keyup", function (e) {period("desktopNotification", 3, e)}, false);
+  $("desktopNotification").addEventListener("change", function (e) {period("desktopNotification", 3, e)}, false);
   $("soundVolume").addEventListener("keyup", function (e) {period("soundVolume", 0, e)}, false);
   $("soundVolume").addEventListener("change", function (e) {period("soundVolume", 0, e)}, false);
   $("resetPeriod").addEventListener("keyup", function (e) {
@@ -97,18 +100,19 @@ window.addEventListener("load", function () {
     reader.readAsDataURL(file);
   }, false);
   $("reset").addEventListener("click", function () {
-    localStorage['alphabetic']         = false;
-    localStorage['alert']              = true;
-    localStorage['doReadOnArchive']    = true;
-    localStorage['notification']       = true;
-    localStorage['period']             = 15;
-    localStorage['soundNotification']  = 1;
-    localStorage['resetPeriod']        = 0;
-    localStorage['initialPeriod']      = 1;
-    localStorage['soundVolume']        = 80;
-    localStorage['feeds']              = "https://mail.google.com/mail/u/0/feed/atom, https://mail.google.com/mail/u/1/feed/atom, https://mail.google.com/mail/u/2/feed/atom, https://mail.google.com/mail/u/3/feed/atom";
-    localStorage['showDetails']        = true;
-    localStorage['size']               = 0;
+    localStorage['alphabetic']          = false;
+    localStorage['alert']               = true;
+    localStorage['doReadOnArchive']     = true;
+    localStorage['notification']        = true;
+    localStorage['period']              = 15;
+    localStorage['soundNotification']   = 1;
+    localStorage['resetPeriod']         = 0;
+    localStorage['initialPeriod']       = 1;
+    localStorage['desktopNotification'] = 5;
+    localStorage['soundVolume']         = 80;
+    localStorage['feeds']               = "https://mail.google.com/mail/u/0/feed/atom, https://mail.google.com/mail/u/1/feed/atom, https://mail.google.com/mail/u/2/feed/atom, https://mail.google.com/mail/u/3/feed/atom";
+    localStorage['showDetails']         = true;
+    localStorage['size']                = 0;
 
     chrome.extension.getBackgroundPage().play.reset();
     load();
